@@ -5,7 +5,9 @@ pcb* create_pcb(unsigned int pid){
 
 }
 
-void run(pcb* process,unsigned int runtime){
+void run_process(pcb* process,unsigned int runtime){
     process->cpu_remaining -= runtime;
     return;
 }
+
+
