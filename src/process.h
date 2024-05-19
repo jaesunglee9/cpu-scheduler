@@ -1,10 +1,25 @@
-typedef struct process
+/*
+** PROCESS NUMBER(Technically belongs to accounting, but put put it separately
+** because it is important)
+** SCHEDULING INFORMATION(Priority,Pointers to scheduling queues)
+** ACCOUNTING INFORMATION(CPU Burst time, real time, IO time etc)
+*/
+
+
+struct pcb  // process control block
 {
-	char id[IDLEN];
-	char cpu_burst;
-	char io_burst;
-	char arrival;
-	char priority;
+	unsigned int pid;
+	unsigned int priority;
+
+	// accounting information
+	unsigned int arrival;
+	unsigned int cpu_burst;
+	unsigned int cpu_remaining;
+	unsigned int io_burst;
+	unsigned int io_remaining;
+	unsigned int completion;
 }
+
+pcb* create_process (unsigned int pid);
 
 
