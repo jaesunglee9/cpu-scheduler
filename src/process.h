@@ -6,7 +6,7 @@
 */
 
 
-struct pcb  // process control block
+struct pcb_t  // process control block
 {
 	unsigned int pid;
 	unsigned int priority;
