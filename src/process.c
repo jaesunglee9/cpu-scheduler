@@ -1,6 +1,21 @@
-pcb_t* initialize_pcb(unsigned int pid){
+#include <stdlib.h>
+
+#define MAXBURST 100
+#define MAXARRIVAL  100
+#define MAXPRIORITY 100
+
+
+
+pcb_t* initialize_rand_pcb(unsigned int pid){
     pcb_t* pcb= (pcb_t*)malloc(sizeof(pcb_t));
-    pcb
+
+    pcb->pid = pid;
+    pcb->priority = rand()%MAXPRIORITY;
+    pcb->arrival = rand()%MAXARRIVAL;
+    pcb->cpu_burst = rand()%MAXBURST;
+    pcb->cpu_remaining = pcb->cpu_burst;
+    pcb->io_burst = rand()%MAXBURST;
+    pcb->io_remaining = pcb->io_burst;
 
 }
 
