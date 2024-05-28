@@ -22,6 +22,3 @@ typedef struct pcb_t  // process control block
 void
 init_rand_pcb(pcb_t pcb[], int len);
 
-// pcb* create_process (unsigned int pid);
-//
-//
