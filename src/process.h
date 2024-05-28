@@ -15,11 +15,10 @@ struct pcb_t  // process control block
 	unsigned int arrival;
 	unsigned int cpu_burst;
 	unsigned int cpu_remaining;
-	unsigned int io_burst;
-	unsigned int io_remaining;
-	unsigned int completion;
+
+	bool completion;
 }
 
-pcb* create_process (unsigned int pid);
-
-
+// pcb* create_process (unsigned int pid);
+//
+//
