@@ -6,18 +6,21 @@
 */
 
 
-struct pcb_t  // process control block
+typedef struct pcb_t  // process control block
 {
-	unsigned int pid;
-	unsigned int priority;
+	int pid;
+	int priority;
 
 	// accounting information
-	unsigned int arrival;
-	unsigned int cpu_burst;
-	unsigned int cpu_remaining;
+	int arrival;
+	int cpu_burst;
+	int cpu_remaining;
 
-	bool completion;
-}
+	int completion;
+} pcb_t;
+
+void
+init_rand_pcb(pcb_t pcb[], int len);
 
 // pcb* create_process (unsigned int pid);
 //

@@ -29,10 +29,10 @@ init_rand_pcb(pcb_t pcb[], int len)
 
 
 // This is simply a decrement function for the given pcb when it is run on cpu. The amount of time that should be decremented is determined by the cpu scheduler.
-void run_process(pcb_t* pcb,unsigned int runtime){
-    pcb->cpu_remaining -= runtime;
-    return;
-}
+// void run_process(pcb_t* pcb,unsigned int runtime){
+//     pcb->cpu_remaining -= runtime;
+//     return;
+// }
 
 // I am not sure we require io burst in cpu simulation.
 
