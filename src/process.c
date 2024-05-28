@@ -9,7 +9,7 @@
 
 
 void
-init_rand_pcb(pcb_t pcb[], int len)
+initRandPCB(pcb_t pcb[], int len)
 {
     int i;
     for (i = 0; i < len; i++){

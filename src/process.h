@@ -5,8 +5,8 @@
 ** ACCOUNTING INFORMATION(CPU Burst time, real time, IO time etc)
 */
 
-#ifndef __PROCESS__
-#define __PROCESS__
+#ifndef __PROCESS
+#define __PROCESS
 
 typedef struct pcb_t  // process control block
 {
@@ -22,7 +22,7 @@ typedef struct pcb_t  // process control block
 } pcb_t;
 
 void
-init_rand_pcb(pcb_t pcb[], int len);
+initRandPCB(pcb_t pcb[], int len);
 
 #endif
 
