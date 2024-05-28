@@ -1,43 +1,77 @@
 #include <stdlib.h>
-#include "process.h"
 
-#define MAXQUEUESIZE 100
+#include "./process.h"
+#include "./queue.h"
 
-struct NODE {
-    pcb_t* process;
-    NODE* next;
-};
+pq_t*
+createpq()
+{
+    pq_t* pq = (pq_t*)malloc(sizeof(pq_t));
+    pq->head = 0;
+    pq->tail = -1;
+    pq->size = 0;
+    pq->p_array = (pcb_t*)malloc(MAXQUEUESIZE * sizeof(pcb_t));
 
-struct QUEUE {
-    NODE* head;
-    NODE* tail;
-};
-
-
-void* queue(){
-    QUEUE* q = (QUEUE*)malloc(sizeof(QUEUE));
-    q->head = NULL;
-    q->tail = NULL;
-    return (void*)q;
+    return pq;
 }
-void enqueue(void* arg, pcb_t* process){
-    QUEUE* q = (QUEUE*)arg;
-    NODE* node = (NODE*)malloc(sizeof(NODE));
-    node->process = process;
-    node->next = NULL;
-    if(q->head==NULL){
-        q->head = node;
-    }else{
-        q->tail->next = node;
+
+void
+deletepq(pq_t* pq)
+{
+    free(pq->p_array);
+    free(pq);
+}
+
+int
+isfull(pq_t* pq)
+{
+    return (pq->size == MAXQUEUESIZE);
+}
+
+int
+isempty(pq_t* pq)
+{
+    return (pq->size == 0);
+}
+
+int
+enqueue(pq_t* pq, pcb_t* pcb)
+{
+    if (isfull(pq)) {
+        return -1;
     }
-    q->tail = node;
-}
-pcb_t* dequeue(QUEUE* q){
-    NODE* del = q->head;
-    q->head = del->next;
-    pcb_t* p = del->process;
-    free(del);
-    return p;
+    pq->tail = (pq->tail+1)%MAXQUEUESIZE;
+    pq->p_array[pq->tail] = *pcb;
+    pq->size++;
+    return 0;
 }
 
+pcb_t*
+dequeue(pq_t* pq)
+{
+    if (isempty(pq)) {
+        return -1;
+    }
+    pcb_t* pcb = pq->p_array[pq->head];
+    pq->head = (pq->head+1)%MAXQUEUESIZE;
+    pq->size--;
+    return pcb;
+}
+
+void
+displaypq(pq_t* pq)
+{
+    if (isempty(pq)) {
+        printf("is empty\n");
+        return;
+    }
+
+    int i;
+    for (i=0; i<pq->size; i++) {
+        int index = (pq->head+i)%MAXQUEUESIZE;
+        printf("Process ID: %d, Process Name: %s, Priority: %d\n",
+               pq->p_array[index].pid,
+               q->queue[index].priority);
+    }
+}
 
