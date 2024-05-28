@@ -22,7 +22,7 @@ typedef struct pcb_t  // process control block
 } pcb_t;
 
 void
-initRandPCB(pcb_t pcb[], int len);
+initrandpcb(pcb_t pcb[], int len);
 
 #endif
 
